@@ -69,5 +69,6 @@ Text="{Binding Name}"
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Frame NavigationUIVisibility="Hidden" Grid.Row="1" Source="Info.xaml" Visibility="Hidden" Name="BigPicture"></Frame>
     </Grid>
 </Window>

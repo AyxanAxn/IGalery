@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:IGalery"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="NextAndBackBtnStyle.xaml">
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

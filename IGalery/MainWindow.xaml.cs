@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Activities.Expressions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -21,11 +22,16 @@ namespace IGalery
     /// </summary>
     public partial class MainWindow : Window
     {
-        ObservableCollection<Image> Images { get; set; } = new ObservableCollection<Image> {
+        public int Index { get; set; }
+        public ObservableCollection<Image> Images { get; set; }
+        public MainWindow()
+        {
+            InitializeComponent();
+            Images = new ObservableCollection<Image> {
         new Image{
             Name="Biden is hiding",
             Price=1000,
-            
+
             PublishDate=new DateTime(2019,8,10),
              ImagePath="Images/BidenIsHiding.jpg",
              Detals="Biden is hiding form Puting"
@@ -76,16 +82,26 @@ namespace IGalery
 
         };
 
-        public MainWindow()
-        {
-            InitializeComponent();
             ListBox.ItemsSource = Images;
+
+
         }
 
         private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Info info = new Info();
-            //info.ImagePage.Source=
+
+            BigPicture.Visibility = Visibility.Visible;
+            BigPicture.Navigate(info);
+            var item = ListBox.SelectedItem as Image;
+            info.TxtBlck.Text = item.Detals;
+            info.selectedIndex = Images.IndexOf(item);
+
+            info.ImagePage.Source = new BitmapImage(new Uri(item.ImagePath, UriKind.Relative));
+            
+
+
+
         }
     }
 }
